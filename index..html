@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+  <link rel="stylesheet" href="./style/style.css">
+  <title>Calcula CPF, CNPJ</title>
+
+</head>
+
+  
+
+<body>
+<main class="container">
+   <p class="relogio"></p>
+   <h1 class="titulo">Calcula digito verificador de CPF/CNPJ</h1>
+   
+   <p><b>CNPJ, CPF ou CAEPF</b></p><p>
+   </p><p align="justify">Saiba como se calcula o Número-Controle do <b>CNPJ</b>, do <b>CPF</b> ou do <b>CAEPF</b> do <b>Ministério da Fazenda</b>.<br>
+      Adicionalmente, veja o DV de qualquer número (CNPJ, CPF ou CAEPF), utilizando as rotinas abaixo.<br><br>
+      Introduza:<br>
+      o número do CNPJ sempre com 12 DÍGITOS (exemplo: 000123450001),<br>
+      o número do CPF, sempre com 9 DÍGITOS (exemplo: 001234567)<br>
+      ou o número do CAEPF sempre com 12 DÍGITOS (exemplo: 034567892001).
+   </p>
+   
+   
+
+   <form id="formulario__cpf">
+      <div class="campo__formulario">
+         <label for="numCpf">Digite 9 números do CPF:
+          <div class="input__cpf">
+             <input type="text" name="numCpf" id="numCpf" data-cpf maxlength="9" class="input">
+             <span data-erro class="erro"></span>
+          </div>
+          <button type="button" id="button" class="button">Calcular</button>
+         </label>
+         <label for="cpfDV"> Digito Verificador:
+            <input type="text" name="cpfDV" id="cpfDV" size="2" class="input">
+         </label>
+         <button type="reset" class="reset">Reiniciar</button>
+      </div>
+   
+   </form>
+   
+   
+   <form id="formulario__cnpj">
+    <div class="campo__formulario">
+       <label for="">Digite 12 dígitos do CNPJ:
+          <div class="input__cpf">
+             <input type="text" name="cgcNum" maxlength="12" class="input" data-cnpj>
+             <span data-erro__cnpj class="erro"></span>
+          </div>
+          <input type="button" value="Calcular" onclick="cgc(this.form)" class="button">
+      </label>
+       <label for="cgcDV">Digito verificador:
+          <input type="text" name="cgcDV" id="cgcDV" size="2" class="input"></td>
+       </label>
+       <button type="reset" class="reset">Reiniciar</button>
+      </div>
+   </form>
+   
+   <p>Se, todavia, o seu interesse na pesquisa de números de CNPJ vai além do cadastro da matriz ou de uma filial determinada e abrange a lista de
+      todas as filiais, use a rotina abaixo.<br><br>
+      Introduza o número do CNPJ, sempre COM 12 DÍGITOS, onde os 4 últimos dígitos sejam 0001 - filial nº 1 (exemplo: 000123450001) e indique o número presumível de
+      filiais, até o máximo de 9999 (o sistema da Receita não prevê número de filiais com mais de 4 dígitos).<br><br>
+      Você pode iniciar a sua lista com outro número que não necessariamente o nº 0001 (exemplo: 000123450101):
+   </p>
+   
+   
+   <form id="formulario__cnpj--filiais">
+    <div class="campo__formulario">
+
+       
+         <label for="cgcNum">CNPJ 12 dígitos:
+          <div class="input__cpf">
+             <input type="text" name="cgcNum" maxlength="12" class="input" data-cnpj-fil="">
+             <span data-erro__cnpjFiliais class="erro"></span>
+          </div>
+            <input type="button" value="Calcular" onclick="cnpj(this.form)" class="button">
+         </label>
+         <label for="cgcFil">Nº de Filiais (opcional):
+            <input type="text" name="cgcFil" size="4" class="input">
+            
+         </label> 
+         <input type="reset" value="Reiniciar" class="reset"></td>
+       
+       
+        <textarea name="cgcList" rows="25" cols="65"></textarea></td>
+      </div>
+   
+   </form>
+   
+   <strong>Notas:</strong>
+   
+   <p>O <b>CNPJ</b> tem a configuração XX.XXX.XXX/XXXX-XX, onde os primeiros oito dígitos são o número-base, os quatro
+      seguintes o número de ordem das filiais da empresa, o penúltimo é o <b>DV (Dígito de Verificação) módulo 11
+      (v. abaixo)</b> dos doze dígitos anteriores e o último é o DV módulo 11 dos treze dígitos anteriores.<br>
+      Outra particularidade  é que o oitavo dígito era <b>DV módulo 10 (v. abaixo)</b> dos sete anteriores, isso para os CNPJ emitidos anteriormente
+      a 1993.<br>
+      A partir daí, a regra foi abandonada, pois o oitavo dígito foi incorporado, para ampliar a capacidade de cadastros (de 10 milhões, a capacidade passou para 100
+      milhões de números possíveis).</p>
+   
+   <p align="justify">O <b>CPF</b> tem a configuração XXX.XXX.XXX-XX, onde os primeiros oito  dígitos são o número-base, o nono define
+      a <b> Região Fiscal (v. abaixo)</b>, o  penúltimo é o <b>DV módulo 11 (v. abaixo)</b> dos nove dígitos  anteriores e o
+      último dígito é o DV módulo 11 dos dez dígitos anteriores.
+   </p>
+   
+   
+   
+   <p align="justify"><b>No caso do CNPJ</b>, o DV módulo 11 corresponde ao resto da divisão por 11 do somatório da multiplicação de
+      cada algarismo da base respectivamente por 9, 8, 7, 6, 5, 4, 3, 2, 9, 8, 7, 6 e 5, a partir da unidade.<br>
+      O resto 10 é considerado 0 (algumas instituições, como o Banco do Brasil, tratam o 10, em seus números de contas, como "X").</p>
+   
+   <p align="justify">O DV módulo 10 corresponde ao número que faltar para inteirar múltiplo de 10, em relação ao somatório da
+      multiplicação de cada algarismo da base respectivamente por 2, 1, 2, 1, 2, 1 e 2, a partir da unidade, sendo que em cada multiplicação
+      valores superiores a 9 deverão sofrer a operação "noves fora".</p>
+   
+   <p align="justify">Veja, abaixo, exemplo de cálculo de DV módulo 11 (o mais usado pelos bancos) e de DV módulo 10 para o CNPJ nº
+      <b>18781203/0001</b>:</p>
+   
+
+      
+
+
+      <table border="2" class="table">
+         <tr>
+            <th colspan="13">Cáluculo primeiro dígito CNPJ</th>
+         </tr>
+         <tr>
+            <th>12 Primeiros Num CNPJ</th>
+            <td>0</td>
+            <td>1</td>
+            <td>3</td>
+            <td>2</td>
+            <td>7</td>
+            <td>5</td>
+            <td>8</td>
+            <td>9</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>1</td>
+         </tr>
+         <tr>
+            <th>Vezes</th>
+            <td>x</td>
+            <td>x</td>
+            <td>x</td>
+            <td>x</td>
+            <td>x</td>
+            <td>x</td>
+            <td>x</td>
+            <td>x</td>
+            <td>x</td>
+            <td>x</td>
+            <td>x</td>
+            <td>x</td>
+         </tr>
+         <tr>
+            <th>Multiplicador</th>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+         </tr>
+         <tr>
+            <th>Resultado</th>
+            <td>0+</td>
+            <td>9+</td>
+            <td>24+</td>
+            <td>14+</td>
+            <td>42+</td>
+            <td>25+</td>
+            <td>32+</td>
+            <td>45+</td>
+            <td>0+</td>
+            <td>0+</td>
+            <td>0+</td>
+            <td>9</td>
+         </tr>
+      </table>
+
+      <table border="2" class="table">
+         <tr>
+            <th colspan="14">Cáluculo segundo dígito CNPJ</th>
+         </tr>
+         <tr>
+            <th>12 Primeiros Num CNPJ + 11°</th>
+            <td>0</td>
+            <td>1</td>
+            <td>3</td>
+            <td>2</td>
+            <td>7</td>
+            <td>5</td>
+            <td>8</td>
+            <td>9</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>1</td>
+            <td>1</td>
+         </tr>
+         <tr>
+            <th>Vezes</th>
+            <td>x</td>
+            <td>x</td>
+            <td>x</td>
+            <td>x</td>
+            <td>x</td>
+            <td>x</td>
+            <td>x</td>
+            <td>x</td>
+            <td>x</td>
+            <td>x</td>
+            <td>x</td>
+            <td>x</td>
+            <td>x</td>
+         </tr>
+         <tr>
+            <th>Multiplicador</th>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+         </tr>
+         <tr>
+            <th>Resultado</th>
+            <td>0</td>
+            <td>0+</td>
+            <td>9+</td>
+            <td>24+</td>
+            <td>14+</td>
+            <td>42+</td>
+            <td>25+</td>
+            <td>32+</td>
+            <td>45+</td>
+            <td>0+</td>
+            <td>0+</td>
+            <td>0+</td>
+            <td>9</td>
+         </tr>
+      </table>
+   
+   
+   <p>
+   No caso do CPF, o DV módulo 11 corresponde ao resto da divisão por 11 do somatório da multiplicação de cada algarismo da
+      base respectivamente por 10, 9, 8, 7, 6, 5, 4, 3, 2 a partir da unidade.
+      O resto 10 é considerado 0. Veja, abaixo, exemplo de cálculo de DV módulo 11 para o CPF nº <strong>013.275.896-XX</strong>:</p>
+
+      <table border="2" class="table">
+         <tr>
+            <th colspan="10">Cáluculo primeiro dígito CPF</th>
+         </tr>
+         <tr>
+            <th>9 Primeiros Num CPF</th>
+            <td>0</td>
+            <td>1</td>
+            <td>3</td>
+            <td>2</td>
+            <td>7</td>
+            <td>5</td>
+            <td>8</td>
+            <td>9</td>
+            <td>6</td>
+         </tr>
+         <tr>
+            <th>Vezes</th>
+            <td>x</td>
+            <td>x</td>
+            <td>x</td>
+            <td>x</td>
+            <td>x</td>
+            <td>x</td>
+            <td>x</td>
+            <td>x</td>
+            <td>x</td>
+         </tr>
+         <tr>
+            <th>Multiplicador</th>
+            <td>10</td>
+            <td>9</td>
+            <td>8</td>
+            <td>7</td>
+            <td>6</td>
+            <td>5</td>
+            <td>4</td>
+            <td>3</td>
+            <td>2</td>
+         </tr>
+         <tr>
+            <th>Resultado</th>
+            <td>0+</td>
+            <td>9+</td>
+            <td>24+</td>
+            <td>14+</td>
+            <td>42+</td>
+            <td>25+</td>
+            <td>32+</td>
+            <td>27+</td>
+            <td>12</td>
+         </tr>
+      </table>
+
+      
+     
+
+
+      <table border="2" class="table">
+         <tr>
+            <th colspan="11">Cáluculo segundo dígito CPF</th>
+         </tr>
+         <tr>
+            <th>9 Primeiros Num CPF + 10°</th>
+            <td>0</td>
+            <td>1</td>
+            <td>3</td>
+            <td>2</td>
+            <td>7</td>
+            <td>5</td>
+            <td>8</td>
+            <td>9</td>
+            <td>6</td>
+            <td>2</td>
+         </tr>
+         <tr>
+            <th>Vezes</th>
+            <td>x</td>
+            <td>x</td>
+            <td>x</td>
+            <td>x</td>
+            <td>x</td>
+            <td>x</td>
+            <td>x</td>
+            <td>x</td>
+            <td>x</td>
+            <td>x</td>
+         </tr>
+         <tr>
+            <th>Multiplicador</th>
+            <td>11</td>
+            <td>10</td>
+            <td>9</td>
+            <td>8</td>
+            <td>7</td>
+            <td>6</td>
+            <td>5</td>
+            <td>4</td>
+            <td>3</td>
+            <td>2</td>
+         </tr>
+         <tr>
+            <th>Resultado</th>
+            <td>0+</td>
+            <td>10+</td>
+            <td>27+</td>
+            <td>16+</td>
+            <td>49+</td>
+            <td>30+</td>
+            <td>40+</td>
+            <td>36+</td>
+            <td>18+</td>                                                    
+            <td>12</td>                                                    
+         </tr>
+      </table>
+
+   
+   
+   <p align="justify">A <b>Região Fiscal</b> onde emitido o <b>CPF</b> (definida pelo nono dígito) tem a seguinte abrangência:<br>
+   
+   </p><pre><font color="#000099" ,="" size="3">   
+      0 (RS)                
+      1 (DF GO MS MT TO)    
+      2 (AC AM AP PA RO RR) 
+      3 (CE MA PI)
+      4 (AL PB PE RN)  
+      5 (BA SE)        
+      6 (MG)           
+      7 (ES RJ)
+      8 (SP)
+      9 (PR SC)
+   </font></pre>
+   
+      Mas, inexplicavelmente, já vi CPF válido, emitido no DF (Região 1) com o nono dígito = 5 (Região BA-SE), o que me faz imaginar
+      que o nono dígito foi incorporado para ampliar a capacidade de cadastros (de 100 milhões, a capacidade passou para 1 bilhão de números possíveis).
+   <p></p>
+   
+   
+</main>
+
+<script src="js/validaDigitoVerificadorCPF.js"></script>
+<script src="js/main.js"></script>
+<script src="js/validadigitoVerificadorCNPJ.js"></script>
+<script src="js/dataHorario.js"></script>
+</body>
+</html>

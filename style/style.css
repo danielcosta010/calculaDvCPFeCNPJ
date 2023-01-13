@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap'); 
+
+* {
+  margin: 0px;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.1rem;
+}
+.container {
+  padding: 2rem;
+}
+
+.titulo {
+  text-align: center;
+  font-size: 1.5rem;
+  padding: .5rem;
+}
+
+.campo__formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 1rem 3rem ;
+  
+  margin: 1rem;
+}
+.input {
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.485);
+  margin-right: .5rem;
+  padding: .3rem;
+}
+.button {
+  padding: .3rem;
+  display: inline-block;
+}
+.input__cpf {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.erro {
+  color: rgb(254, 37, 37);
+  font-size: .8rem;
+  font-weight: 500;
+  margin-top: .2rem;
+}
+.reset {
+  width: 100px;
+  padding: .3rem;
+}
+.table {
+  width: 100%;
+  background: gray;
+  border: 2px solid black;
+  margin: 1rem auto;
+  border-collapse: collapse;
+  padding: 10px;
+  text-align: center;
+  overflow-x: scroll;
+}
+.table,  td, th {
+  border: 2px border black;
+  padding: 10px;
+}
+.table tr:nth-child(even) {
+  background: gainsboro;
+}
+
+  @media (max-width: 800px)  {
+    .table {
+      display: block;
+      overflow-x: auto;
+    }
+  }
+  @media (max-width: 500px) {
+    .campo__formulario {
+      padding: 1rem .5rem;
+    }
+  }
