@@ -6,6 +6,17 @@
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
   font-size: 1.1rem;
+  scroll-behavior: smooth;
+}
+body {
+  background-color: #AEBDCA;
+}
+p {
+  margin-bottom: 10px;
+}
+.aviso {
+  font-size: .8rem;
+  color: red;
 }
 .container {
   padding: 2rem;
@@ -33,6 +44,7 @@
 .button {
   padding: .3rem;
   display: inline-block;
+  background-color: #F5EFE6;
 }
 .input__cpf {
   display: inline-flex;
@@ -48,6 +60,7 @@
 .reset {
   width: 100px;
   padding: .3rem;
+  background-color: #F5EFE6;
 }
 .table {
   width: 100%;
