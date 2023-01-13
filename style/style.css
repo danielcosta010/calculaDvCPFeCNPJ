@@ -11,6 +11,9 @@
 body {
   background-color: #AEBDCA;
 }
+.titulo {
+  margin-bottom: 30px;
+}
 p {
   margin-bottom: 10px;
 }

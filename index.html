@@ -17,15 +17,15 @@
 <body>
 <main class="container">
    <p class="relogio"></p>
-   <h1 class="titulo">Calcula digito verificador de CPF/CNPJ</h1>
+   <h1 class="titulo">Calcula dígito verificador de CPF/CNPJ</h1>
    
-   <p><strong>CPF, CNPJ</strong></p>
+   
    <p>Se você quer saber como calcular o Digito Verificador do <strong>CPF</strong> ou <strong>CNPJ</strong> de acordo com o Ministério da Fazenda, aqui você encontrará a explicação de como é feito este cálculo.</p>
 
    <p>Você também pode verificar qualquer <a href="#formulario__cpf"><strong>CPF</strong></a> ou <a href="#formulario__cnpj"><strong>CNPJ</strong></a> preenchendo os formulários.</p>
       
    <p>Para calcular ou validar o DV de qualquer <strong>CPF</strong> você deve digitar os 9 primeiros Digitos no formulário</p>
-   <p class="aviso">Não nos responsabilizamos por quaisquer uso dos números gerados, estes números são pra fins de testes e didáticos e não necessariamente retorna um número de documento cadastrado na receita federal, retorna um número que seria válido e pode verificar se um número de CPF ou CNPJ passado é válido ou não de acordo com o cálculo do DV</p>
+   <p class="aviso">Este site não se responsabiliza por quaisquer uso dos números gerados. Estes números são para fins de testes e didáticos e não necessariamente retorna um número de documento cadastrado na receita federal, retorna um número que seria válido, e tembém pode verificar se um número de CPF ou CNPJ passado é válido ou não de acordo com o cálculo do DV</p>
       
    
 
@@ -51,11 +51,11 @@
    </p>
 
    <p>
-      O cálculo do DV módulo 11 do <strong>CPF</strong>, corresponde ao somatório da multiplicação de cada algarismo da base respectivamente por 10, 9, 8, 7, 6, 5, 4, 3, 2 a partir da unidade, multiplica-se este somatório por 10 e dividimos por 11, o resto desta divisão é o primeiro dígito verificador. E para encontrar o segundo dígito verificador pegamos o resultado do somatório da multiplicação dos 9 primeiros dígitos mais o 10° encontrado respectivamente por 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, este somatório é multiplicado por 10 e dividido por 11, o resto desta divisão é segundo dígito verificador.
+      O cálculo do DV módulo 11 do <strong>CPF</strong>, corresponde ao somatório da multiplicação de cada algarismo da base respectivamente por 10, 9, 8, 7, 6, 5, 4, 3, 2 da esquerda para direita (<a href="#tabela__cpf1">veja tabela</a>), multiplica-se este somatório por 10 e dividimos por 11, o resto desta divisão é o primeiro dígito verificador. E para encontrar o segundo dígito verificador pegamos o resultado do somatório da multiplicação dos 9 primeiros dígitos mais o 10° encontrado respectivamente por 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 da esquerda para direita (<a href="#tabela__cpf2">veja tabela</a>) este somatório é multiplicado por 10 e dividido por 11, o resto desta divisão é segundo dígito verificador.
    </p>
       <p>Se o resto encontrado for 10 o dígito verificador será 0. Veja nas tabelas abaixo, exemplo de cálculo de DV módulo 11 para o CPF nº <strong>012.987.436-XX</strong>:</p>
 
-      <table border="2" class="table">
+      <table border="2" class="table" id="tabela__cpf1">
          <tr>
             <th colspan="10">Cáluculo primeiro dígito CPF</th>
          </tr>
@@ -109,11 +109,11 @@
          </tr>
       </table>
 
-      <p>Resultado é <strong>208</strong> x 10 = 2080 pegamos 2080 / 11 o resto desta divisão é o primero Digito verificador <strong>1</strong></p>
+      <p>Resultado é <strong>208</strong> x 10 = 2080 pegamos 2080 &#247; 11 o resto desta divisão é o primero Dígito verificador <strong>1</strong></p>
      
 
 
-      <table border="2" class="table">
+      <table border="2" class="table" id="tabela__cpf2">
          <tr>
             <th colspan="11">Cáluculo segundo dígito CPF</th>
          </tr>
@@ -171,7 +171,7 @@
          </tr>
       </table>
 
-      <p>Resultado é <strong>250</strong> x 10 = 2500 pegamos 2500 / 11 o resto desta divisão é o segundo Digito verificador <strong>3</strong></p>
+      <p>Resultado é <strong>250</strong> x 10 = 2500 pegamos 2500 &#247; 11 o resto desta divisão é o segundo Dígito verificador <strong>3</strong></p>
 
       <p>Gerando CPF nº <strong>012.987.436-13</strong></p>
 
@@ -193,6 +193,7 @@
       9 (PR SC)
    </pre>
    
+   <p>Para calcular ou validar o DV de qualquer <strong>CNPJ</strong> você deve digitar os 12 primeiros Digitos no formulário, se você quiser calcular apartir da matriz, ou se só houver a matriz os 4 últimos números deverão ser 0001.</p>
    
    <form id="formulario__cnpj">
     <div class="campo__formulario">
@@ -210,12 +211,13 @@
       </div>
    </form>
    
-   <p>Se, todavia, o seu interesse na pesquisa de números de CNPJ vai além do cadastro da matriz ou de uma filial determinada e abrange a lista de
-      todas as filiais, use a rotina abaixo.<br><br>
-      Introduza o número do CNPJ, sempre COM 12 DÍGITOS, onde os 4 últimos dígitos sejam 0001 - filial nº 1 (exemplo: 000123450001) e indique o número presumível de
-      filiais, até o máximo de 9999 (o sistema da Receita não prevê número de filiais com mais de 4 dígitos).<br><br>
-      Você pode iniciar a sua lista com outro número que não necessariamente o nº 0001 (exemplo: 000123450101):
-   </p>
+   <p>Se você precisa pesquisar além do cadastro da matriz ou de uma filial determinada e abranger a lista de
+   todas as filiais, use o formulario abaixo.</p>
+
+   <p>Introduza o número do CNPJ, sempre COM 12 DÍGITOS, onde os 4 últimos dígitos sejam 0001 - filial nº (exemplo:000123450001)e indique o número presumível de filiais, até o máximo de 9999 (o sistema da Receita não prevê número de filiais com mais de 4 dígitos).</p>
+
+   <p>Você pode iniciar a sua lista com outro número que não necessariamente o nº 0001 (exemplo: 013569840057), estará pesquisando a filial 57, ou apartir dela.</p>
+   
    
    
    <form id="formulario__cnpj--filiais">
@@ -244,27 +246,20 @@
    
    
    <p>O <strong>CNPJ</strong> tem a configuração XX.XXX.XXX/XXXX-XX, onde os primeiros oito dígitos são o número-base, os quatro
-      seguintes o número de ordem das filiais da empresa, o penúltimo é o <b>DV (Dígito de Verificação) módulo 11
-      (v. abaixo)</b> dos doze dígitos anteriores e o último é o DV módulo 11 dos treze dígitos anteriores.<br>
-      Outra particularidade  é que o oitavo dígito era <b>DV módulo 10 (v. abaixo)</b> dos sete anteriores, isso para os CNPJ emitidos anteriormente
-      a 1993.<br>
-      A partir daí, a regra foi abandonada, pois o oitavo dígito foi incorporado, para ampliar a capacidade de cadastros (de 10 milhões, a capacidade passou para 100
-      milhões de números possíveis).</p>
+      seguintes o número de ordem das filiais da empresa, o penúltimo é o <strong>DV (Dígito de Verificação) módulo 11</strong> dos doze dígitos anteriores e o último é o DV módulo 11 dos treze dígitos anteriores.</p> 
+   
+   
+   <p>No caso do <strong>CNPJ</strong>, o DV módulo 11 corresponde ao resto da divisão por 11 do somatório da multiplicação de
+   cada algarismo da base respectivamente por 9, 8, 7, 6, 5, 4, 3, 2, 9, 8, 7, 6 da direita para esquerda, para o primeiro dígito. E para o segundo dígito o resto da divisao por 11 do somatório da multiplicação dos 12 primeiros números mais o 1° DV encontrado, respectivamente 9, 8, 7, 6, 5, 4, 3, 2, 9, 8, 7, 6, 5 da direita para esquerda</p>
+   
+   
+
+   <p>O resto 10 é considerado 0 (algumas instituições, como o Banco do Brasil, tratam o 10, em seus números de contas, como "X").</p>
    
    
    
-   
-   
-   <p><b>No caso do CNPJ</b>, o DV módulo 11 corresponde ao resto da divisão por 11 do somatório da multiplicação de
-      cada algarismo da base respectivamente por 9, 8, 7, 6, 5, 4, 3, 2, 9, 8, 7, 6 e 5, a partir da unidade.<br>
-      O resto 10 é considerado 0 (algumas instituições, como o Banco do Brasil, tratam o 10, em seus números de contas, como "X").</p>
-   
-   <p align="justify">O DV módulo 10 corresponde ao número que faltar para inteirar múltiplo de 10, em relação ao somatório da
-      multiplicação de cada algarismo da base respectivamente por 2, 1, 2, 1, 2, 1 e 2, a partir da unidade, sendo que em cada multiplicação
-      valores superiores a 9 deverão sofrer a operação "noves fora".</p>
-   
-   <p align="justify">Veja, abaixo, exemplo de cálculo de DV módulo 11 (o mais usado pelos bancos) e de DV módulo 10 para o CNPJ nº
-      <strong>01327589/0001</strong>:</p>
+   <p>Veja, abaixo, exemplo de cálculo de DV módulo 11 para o CNPJ nº
+      <strong>01.327.589/0001-</strong>XX</p>
    
 
       
@@ -336,12 +331,14 @@
          </tr>
       </table>
 
+      Resultado = 164 o resto desta divisão 164 &#247; 11  é 10, pela regra quando o resto é 10 do DV é <strong>0</strong>
+
       <table border="2" class="table">
          <tr>
             <th colspan="14">Cáluculo segundo dígito CNPJ</th>
          </tr>
          <tr>
-            <th>12 Primeiros Num CNPJ + 11°</th>
+            <th>12 Primeiros Num CNPJ + 13°</th>
             <td>0</td>
             <td>1</td>
             <td>3</td>
@@ -407,8 +404,9 @@
       </table>
    
    
-   <p>
+   <p>Resultado = 84 o resto desta divisão 184 &#247; 11  é 8, o segundo DV é <strong>8</strong></p>
    
+   <p>Gerando CNPJ nº <strong>01.327.589/0001-08</strong></p>
    
    
 </main>
